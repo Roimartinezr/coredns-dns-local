@@ -1,0 +1,13 @@
+﻿FROM alpine
+
+RUN apk add --no-cache curl bind-tools coreutils
+
+# Descargar CoreDNS y dar permisos
+ADD https://github.com/coredns/coredns/releases/download/v1.11.1/coredns_1.11.1_linux_amd64.tgz /tmp/
+RUN tar -xzf /tmp/coredns_1.11.1_linux_amd64.tgz -C /usr/bin && chmod +x /usr/bin/coredns
+
+COPY Corefile /Corefile
+COPY zones /zones
+
+ENTRYPOINT ["/usr/bin/coredns"]
+CMD ["-conf", "/Corefile"]

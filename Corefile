@@ -1,0 +1,10 @@
+﻿. {
+    forward . 8.8.8.8
+    log
+    errors
+}
+
+buenosdias.com {
+    file /zones/buenosdias.zone buenosdias.com
+    log
+}

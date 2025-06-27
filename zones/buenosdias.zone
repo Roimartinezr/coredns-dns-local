@@ -1,0 +1,18 @@
+$ORIGIN buenosdias.com.
+$TTL 3600
+
+@ IN SOA ns1.buenosdias.com. admin.buenosdias.com. (
+    2025061201 ; serial
+    3600       ; refresh
+    1800       ; retry
+    604800     ; expire
+    86400 )    ; minimum
+
+    IN NS ns1.buenosdias.com.
+
+ns1 IN A 127.0.0.1
+mail IN A 127.0.0.1
+api IN CNAME mail
+www IN A 127.0.0.1 ; para simular páginas web phishing
+@ IN MX 10 mail.buenosdias.com.
+@ IN TXT "v=spf1 a mx ~all"

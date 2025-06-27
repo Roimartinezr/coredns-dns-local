@@ -1,0 +1,11 @@
+﻿services:
+  coredns:
+    image: coredns/coredns
+    container_name: coredns
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./Corefile:/Corefile
+      - ./zones:/zones
+    command: -conf /Corefile
