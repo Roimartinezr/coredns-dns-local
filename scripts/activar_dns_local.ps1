@@ -1,5 +1,11 @@
 # & "$PSScriptRoot\actualizar_zone_ip.ps1"
 
+# Auto-elevación
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    Start-Process powershell "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+    exit
+}
+
 # Asegurar que Docker Desktop está activo
 $dockerProcess = Get-Process -Name "Docker Desktop" -ErrorAction SilentlyContinue
 
