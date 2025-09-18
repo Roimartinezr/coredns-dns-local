@@ -15,9 +15,19 @@ mail IN A 127.0.0.1
 api IN CNAME mail
 www IN A 127.0.0.1 ; para simular páginas web phishing
 @ IN MX 10 mail.buenosdias.com.
-@ IN TXT "v=spf1 ip4:124.0.0.1 a mx ~all"
+@ IN TXT "v=spf1 ip4:124.0.0.1 a mx -all"
 
 mail2025._domainkey IN TXT (
     "v=DKIM1; k=rsa; "
-    "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArandompublickeyexample"
+    "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdgH/e5CS4WCu0w/27lDTKZGHi
+1O+aHJwfsvrdxP2OYRAnNSACeiC+xKEaHE4bSmTzvb7wQSkdDWh13u1RJ8poYRD3
+TNOseF6Fv76n+5x1C22UreyGyhMr+KiTYzYXF/6iIpU7KoriwXNUBNvcTnl16/1+
+eZF5PVaU7mxTPKERhwIDAQAB"
+)
+
+_dmarc IN TXT (
+    "v=DMARC1; p=reject; sp=quarantine; pct=100; "
+    "adkim=s; aspf=s; fo=0; "
+    "rua=mailto:dmarc-agg@buenosdias.com; "
+    "ruf=mailto:dmarc-afrf@buenosdias.com"
 )
